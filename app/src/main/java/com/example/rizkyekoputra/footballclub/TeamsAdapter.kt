@@ -11,7 +11,7 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.linearLayout
 import com.squareup.picasso.Picasso
 
-class MainAdapter (private val teams: List<Team>)
+class TeamsAdapter (private val teams: List<Team>)
     : RecyclerView.Adapter<TeamViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
         return TeamViewHolder(TeamUI().createView(AnkoContext.create(parent.context, parent)))
