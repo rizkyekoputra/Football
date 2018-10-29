@@ -17,7 +17,7 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
         }
     }
 
-    override fun onCreate(db: SQLiteDatabase?) {
+    override fun onCreate(db: SQLiteDatabase) {
         db.createTable(Favorite.TABLE_FAVORITE, true,
                 Favorite.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
                 Favorite.TEAM_ID to TEXT + UNIQUE,
@@ -25,9 +25,10 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
                 Favorite.TEAM_BADGE to TEXT)
     }
 
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.dropTable(Favorite.TABLE_FAVORITE, true)
     }
+
 }
 
 // Access property for Context
