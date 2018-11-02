@@ -11,6 +11,7 @@ class TeamsPresenter(private val view: TeamsView,
 
     fun getTeamList(league: String?) {
         view.showLoading()
+        EspressoIdlingResource.increment()
 
         async(context.main) {
             val data = bg {
@@ -22,6 +23,7 @@ class TeamsPresenter(private val view: TeamsView,
 
             view.showTeamList(data.await().teams)
             view.hideLoading()
+            EspressoIdlingResource.decrement()
         }
     }
 }

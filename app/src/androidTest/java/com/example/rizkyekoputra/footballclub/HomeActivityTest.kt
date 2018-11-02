@@ -12,44 +12,56 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.example.rizkyekoputra.footballclub.R.id.*
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import android.support.test.espresso.IdlingRegistry
+
 
 @RunWith(AndroidJUnit4::class)
 class HomeActivityTest {
     @Rule
-    @JvmField var activityRule = ActivityTestRule(HomeActivity::class.java)
+    @JvmField
+    var activityRule = ActivityTestRule(HomeActivity::class.java)
+
+    @Before
+    fun setUp() {
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getIdlingResource())
+    }
 
     @Test
     fun testRecyclerViewBehaviour() {
-        onView(withId(list_team))
-                .check(matches(isDisplayed()))
+        onView(withId(list_team)).check(matches(isDisplayed()))
         onView(withId(list_team)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(10))
-        onView(withId(list_team)).perform(
-                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(10, click()))
+        onView(withId(list_team)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(10, click()))
     }
 
     @Test
     fun testAppBehaviour() {
-        onView(withId(spinner))
-                .check(matches(isDisplayed()))
+        onView(withId(spinner)).check(matches(isDisplayed()))
         onView(withId(spinner)).perform(click())
         onView(ViewMatchers.withText("Spanish La Liga")).perform(click())
-
-        onView(ViewMatchers.withText("Barcelona"))
-                .check(matches(isDisplayed()))
+        onView(ViewMatchers.withText("Barcelona")).check(matches(isDisplayed()))
         onView(ViewMatchers.withText("Barcelona")).perform(click())
-
-        onView(withId(add_to_favorite))
-                .check(matches(isDisplayed()))
+        onView(withId(add_to_favorite)).check(matches(isDisplayed()))
         onView(withId(add_to_favorite)).perform(click())
-        onView(ViewMatchers.withText("Added to favorite"))
-                .check(matches(isDisplayed()))
+        onView(ViewMatchers.withText("Added to favorite")).check(matches(isDisplayed()))
         Espresso.pressBack()
-
-        onView(withId(bottom_navigation))
-                .check(matches(isDisplayed()))
+        onView(withId(bottom_navigation)).check(matches(isDisplayed()))
+        onView(withId(favorites)).perform(click())
+        onView(withId(bottom_navigation)).check(matches(isDisplayed()))
+        onView(withId(teams)).perform(click())
+        onView(withId(spinner)).check(matches(isDisplayed()))
+        onView(withId(spinner)).perform(click())
+        onView(ViewMatchers.withText("Spanish La Liga")).perform(click())
+        onView(ViewMatchers.withText("Barcelona")).check(matches(isDisplayed()))
+        onView(ViewMatchers.withText("Barcelona")).perform(click())
+        onView(withId(add_to_favorite)).check(matches(isDisplayed()))
+        onView(withId(add_to_favorite)).perform(click())
+        onView(ViewMatchers.withText("Removed to favorite")).check(matches(isDisplayed()))
+        Espresso.pressBack()
+        onView(withId(bottom_navigation)).check(matches(isDisplayed()))
         onView(withId(favorites)).perform(click())
     }
 }
