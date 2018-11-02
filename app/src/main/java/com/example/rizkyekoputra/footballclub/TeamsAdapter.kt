@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.example.rizkyekoputra.footballclub.R.id.*
-import org.jetbrains.anko.*
-import org.jetbrains.anko.linearLayout
+import com.example.rizkyekoputra.footballclub.R.id.team_badge
+import com.example.rizkyekoputra.footballclub.R.id.team_name
 import com.squareup.picasso.Picasso
-import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class TeamsAdapter (private val teams: List<Team>, private val listener: (Team) -> Unit)
     : RecyclerView.Adapter<TeamViewHolder>(){

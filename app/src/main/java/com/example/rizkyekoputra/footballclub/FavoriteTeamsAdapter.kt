@@ -10,7 +10,7 @@ import com.example.rizkyekoputra.footballclub.R.id.team_name
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.find
-import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class FavoriteTeamsAdapter(private val favorite: List<Favorite>, private val listener: (Favorite) -> Unit)
     : RecyclerView.Adapter<FavoriteViewHolder>() {

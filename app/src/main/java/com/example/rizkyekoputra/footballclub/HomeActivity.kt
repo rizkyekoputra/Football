@@ -1,16 +1,17 @@
 package com.example.rizkyekoputra.footballclub
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_home.*
+import android.support.v7.app.AppCompatActivity
 import com.example.rizkyekoputra.footballclub.R.id.favorites
 import com.example.rizkyekoputra.footballclub.R.id.teams
+import com.example.rizkyekoputra.footballclub.R.layout.activity_home
+import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(activity_home)
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -26,11 +27,12 @@ class HomeActivity : AppCompatActivity() {
         bottom_navigation.selectedItemId = teams
     }
 
+
     private fun loadTeamsFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.main_container, TeamsFragment(), TeamsFragment::class.java.simpleName)
+                    .replace(R.id.main_container, TeamsFragment(), TeamsFragment::class.simpleName)
                     .commit()
         }
     }
@@ -39,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.main_container, FavoriteTeamsFragment(), FavoriteTeamsFragment::class.java.simpleName)
+                    .replace(R.id.main_container, FavoriteTeamsFragment(), FavoriteTeamsFragment::class.simpleName)
                     .commit()
         }
     }

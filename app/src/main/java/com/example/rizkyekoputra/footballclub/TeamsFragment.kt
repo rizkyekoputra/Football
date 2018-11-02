@@ -19,9 +19,7 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-/**
- * Created by RizkyEko on 26/10/18.
- */
+
 class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
 
     private var teams: MutableList<Team> = mutableListOf()
@@ -67,31 +65,34 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
         return createView(AnkoContext.create(ctx))
     }
 
-    override fun createView(ui: AnkoContext<Context>): View = with(ui) {
+    override fun createView(ui: AnkoContext<Context>): View = with(ui){
         linearLayout {
-            lparams(width = matchParent, height = wrapContent)
+            lparams (width = matchParent, height = wrapContent)
             orientation = LinearLayout.VERTICAL
             topPadding = dip(16)
             leftPadding = dip(16)
             rightPadding = dip(16)
 
-            spinner = spinner()
+            spinner = spinner {
+                id = R.id.spinner
+            }
             swipeRefresh = swipeRefreshLayout {
                 setColorSchemeResources(colorAccent,
                         android.R.color.holo_green_light,
                         android.R.color.holo_orange_light,
                         android.R.color.holo_red_light)
 
-                relativeLayout {
-                    lparams(width = matchParent, height = wrapContent)
+                relativeLayout{
+                    lparams (width = matchParent, height = wrapContent)
 
                     listEvent = recyclerView {
-                        lparams(width = matchParent, height = wrapContent)
+                        id = R.id.list_team
+                        lparams (width = matchParent, height = wrapContent)
                         layoutManager = LinearLayoutManager(ctx)
                     }
 
                     progressBar = progressBar {
-                    }.lparams {
+                    }.lparams{
                         centerHorizontally()
                     }
                 }
@@ -113,4 +114,5 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
         teams.addAll(data)
         adapter.notifyDataSetChanged()
     }
+
 }
